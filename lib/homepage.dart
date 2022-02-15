@@ -13,11 +13,25 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
+  // TODO: add animation property
+  // ignore: unused_field
+  late Animation<double> _scaleAnimation;
+
   final isSelected = <int, bool>{};
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+      reverseDuration: const Duration(milliseconds: 500),
+    );
+
+    _scaleAnimation = CurvedAnimation(
+        parent: _controller,
+        curve: Curves.bounceOut,
+        reverseCurve: Curves.bounceIn);
+
     super.initState();
   }
 
@@ -64,13 +78,15 @@ class _HomePageState extends State<HomePage>
               setState(() {
                 if (isSelected.containsKey(index)) {
                   isSelected.remove(index);
+                  _controller.reverse();
                 } else {
                   isSelected.putIfAbsent(index, () => isSelected[index] = true);
+                  _controller.forward();
                 }
               });
             },
             child: Container(
-              key: Key('$index'),
+              key: Key('container_$index'),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: isSelected[index] != null ? Colors.blue : null,
