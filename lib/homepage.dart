@@ -1,53 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mastermind/board.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  // TODO: add animation property
-  // ignore: unused_field
-  late Animation<double> _scaleAnimation;
-
-  final isSelected = <int, bool>{};
-
-  @override
-  void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-      reverseDuration: const Duration(milliseconds: 500),
-    );
-
-    _scaleAnimation = CurvedAnimation(
-        parent: _controller,
-        curve: Curves.bounceOut,
-        reverseCurve: Curves.bounceIn);
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final Map<int, bool> _selected = {};
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          widget.title,
+          title,
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -67,38 +33,46 @@ class _HomePageState extends State<HomePage>
         ],
         centerTitle: true,
       ),
-      body: Center(
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: MediaQuery.of(context).size.width * 0.05,
-              crossAxisSpacing: MediaQuery.of(context).size.height * 0.05),
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () {
-              setState(() {
-                if (isSelected.containsKey(index)) {
-                  isSelected.remove(index);
-                  _controller.reverse();
-                } else {
-                  isSelected.putIfAbsent(index, () => isSelected[index] = true);
-                  _controller.forward();
-                }
-              });
-            },
-            child: Container(
-              key: Key('container_$index'),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isSelected[index] != null ? Colors.blue : null,
-                border: Border.all(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: Board(selectedTiles: _selected),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 40,
+            width: MediaQuery.of(context).size.width * 0.3,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: const BorderSide(color: Colors.black, width: 2),
+                  ),
+                ),
+                backgroundColor:
+                    MaterialStateProperty.all<Color?>(Colors.white),
+              ),
+              onPressed: () {},
+              child: const Text(
+                'Check',
+                style: TextStyle(
                   color: Colors.black,
-                  width: 5,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
               ),
             ),
           ),
-          itemCount: 32,
-        ),
+        ],
       ),
     );
   }
