@@ -45,31 +45,33 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 40,
-            width: MediaQuery.of(context).size.width * 0.3,
-            child: ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: const BorderSide(color: Colors.black, width: 2),
-                  ),
-                ),
-                backgroundColor:
-                    MaterialStateProperty.all<Color?>(Colors.white),
-              ),
-              onPressed: () {},
-              child: const Text(
-                'Check',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            ),
-          ),
+          // Disable for now, might be moved to board.dart
+
+          // SizedBox(
+          //   height: 40,
+          //   width: MediaQuery.of(context).size.width * 0.3,
+          //   child: ElevatedButton(
+          //     style: ButtonStyle(
+          //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          //         RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(18.0),
+          //           side: const BorderSide(color: Colors.black, width: 2),
+          //         ),
+          //       ),
+          //       backgroundColor:
+          //           MaterialStateProperty.all<Color?>(Colors.white),
+          //     ),
+          //     onPressed: () {},
+          //     child: const Text(
+          //       'Check',
+          //       style: TextStyle(
+          //         color: Colors.black,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 15,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

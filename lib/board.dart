@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:mastermind/constants.dart';
 
@@ -66,57 +68,65 @@ class _BoardState extends State<Board> {
           itemCount: 20,
         ),
         isPopUpOpen.containsKey(tappedTile)
-            ? Center(
-                child: DecoratedBox(
-                  key: Key('popUpBox_$tappedTile'),
-                  decoration: const BoxDecoration(
-                    color: Colors.grey,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.18,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10,
-                          ),
-                          itemCount: 12,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (isSelected.containsKey(tappedTile)) {
-                                    isSelected.remove(tappedTile);
-                                  } else {
-                                    isSelected.putIfAbsent(
-                                      tappedTile!,
-                                      () => isSelected[tappedTile!] = true,
-                                    );
-                                  }
+            ? BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 10,
+                  sigmaY: 10,
+                ),
+                child: Center(
+                  child: DecoratedBox(
+                    key: Key('popUpBox_$tappedTile'),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: 20,
+                            ),
+                            itemCount: 12,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    if (isSelected.containsKey(tappedTile)) {
+                                      isSelected.remove(tappedTile);
+                                    } else {
+                                      isSelected.putIfAbsent(
+                                        tappedTile!,
+                                        () => isSelected[tappedTile!] = true,
+                                      );
+                                    }
 
-                                  selectedColor.update(tappedTile!, (color) {
-                                    isPopUpOpen.remove(tappedTile);
-                                    return selectedColor[tappedTile!] =
-                                        colorList[index];
-                                  }, ifAbsent: () {
-                                    isPopUpOpen.remove(tappedTile);
-                                    return selectedColor[tappedTile!] =
-                                        colorList[index];
+                                    selectedColor.update(tappedTile!, (color) {
+                                      isPopUpOpen.remove(tappedTile);
+                                      return selectedColor[tappedTile!] =
+                                          colorList[index];
+                                    }, ifAbsent: () {
+                                      isPopUpOpen.remove(tappedTile);
+                                      return selectedColor[tappedTile!] =
+                                          colorList[index];
+                                    });
                                   });
-                                });
-                              },
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: colorList[index],
+                                },
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: colorList[index],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }),
+                              );
+                            }),
+                      ),
                     ),
                   ),
                 ),
