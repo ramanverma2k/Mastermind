@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:mastermind/constants.dart';
 
 class Board extends StatefulWidget {
-  const Board({Key? key, required this.selectedTiles}) : super(key: key);
-
-  final Map<int, bool> selectedTiles;
+  const Board({Key? key}) : super(key: key);
 
   @override
   _BoardState createState() => _BoardState();

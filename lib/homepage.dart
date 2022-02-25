@@ -7,8 +7,6 @@ class HomePage extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    final Map<int, bool> _selected = {};
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -43,7 +41,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width * 0.8,
-                child: Board(selectedTiles: _selected),
+                child: const Board(),
               ),
             ],
           ),
