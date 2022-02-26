@@ -1,5 +1,13 @@
 import 'package:flutter/widgets.dart';
 
+class Breakpoints {
+  static const double xs = 120.0;
+  static const double sm = 600.0;
+  static const double md = 960.0;
+  static const double lg = 1280.0;
+  static const double xl = 1920.0;
+}
+
 const colorList = <Color>[
   Color(0xFFf44336),
   Color(0xFFe91e63),
