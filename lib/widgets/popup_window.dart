@@ -35,9 +35,10 @@ class PopUpWindow extends ConsumerWidget {
                       return GestureDetector(
                         onTap: () {
                           // Fill the cell with selected color
-                          ref.read(selectedCells)[ref
-                              .watch(tappedCell.state)
-                              .state] = colorList[index];
+                          ref.read(boardState.state).state.selectedCells[ref
+                              .watch(boardState.state)
+                              .state
+                              .tappedTile] = colorList[index];
 
                           // Hide popup window after filling the cell.
                           ref.read(isPopupOpen.state).state = false;

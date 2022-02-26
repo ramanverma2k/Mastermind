@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mastermind/utils/board_state.dart';
 import 'package:mastermind/widgets/board.dart';
 import 'package:mastermind/widgets/refresh_button.dart';
 

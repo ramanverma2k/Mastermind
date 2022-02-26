@@ -1,8 +1,8 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mastermind/models/board_model.dart';
 
-final selectedCells = StateProvider<Map<String, Color?>>((ref) => {});
-
-final tappedCell = StateProvider<String>((ref) => '');
+final boardState = StateProvider<BoardModel>(
+  (ref) => BoardModel(),
+);
 
 final isPopupOpen = StateProvider<bool>((ref) => false);

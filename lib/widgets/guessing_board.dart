@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mastermind/models/board_model.dart';
 import 'package:mastermind/utils/board_state.dart';
 
 class GuessingBoard extends ConsumerWidget {
@@ -7,7 +8,8 @@ class GuessingBoard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Map<String, Color?> cells = ref.watch(selectedCells.state).state;
+    final BoardModel state = ref.watch(boardState);
+
     final bool popUpState = ref.watch(isPopupOpen.state).state;
 
     return Column(
@@ -24,14 +26,15 @@ class GuessingBoard extends ConsumerWidget {
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     // Push the selected cell index to the board state
-                    ref.read(selectedCells).putIfAbsent(
+                    ref.read(boardState.state).state.selectedCells.putIfAbsent(
                           '$colNum$index',
                           () => null,
                         );
 
                     // Keep track of which cell is currently selected
                     // We'll use this to highlight the selected cell with color choice
-                    ref.read(tappedCell.state).state = '$colNum$index';
+                    ref.read(boardState.state).state.tappedTile =
+                        '$colNum$index';
 
                     // Update the state of isPopUpOpen state to show or hide the popup.
                     ref.read(isPopupOpen.state).state = !popUpState;
@@ -40,7 +43,8 @@ class GuessingBoard extends ConsumerWidget {
                     key: Key('cell_$colNum$index'),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: cells['$colNum$index'] ?? Colors.white,
+                      color:
+                          state.selectedCells['$colNum$index'] ?? Colors.white,
                       border: Border.all(
                         color: Colors.black,
                         width: 3,

@@ -13,10 +13,7 @@ class RefreshButton extends ConsumerWidget {
         ? GestureDetector(
             onTap: () {
               // Reset the board state
-              // Clear all the selected cells
-              ref.refresh(selectedCells);
-              // Get rid of the tappedTile state
-              ref.refresh(tappedCell);
+              ref.refresh(boardState);
             },
             child: const Icon(
               Icons.refresh_rounded,
