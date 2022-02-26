@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mastermind/widgets/confirm_button.dart';
 
 class HintBoard extends StatelessWidget {
-  const HintBoard({Key? key, this.rowsDone}) : super(key: key);
+  const HintBoard({Key? key, this.rowsDone = const []}) : super(key: key);
 
   final List<int>? rowsDone;
 
