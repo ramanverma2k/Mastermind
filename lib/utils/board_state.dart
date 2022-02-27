@@ -5,4 +5,8 @@ final boardState = StateProvider<BoardModel>(
   (ref) => BoardModel(),
 );
 
+final currentRow = StateProvider<int>(
+  (ref) => 0,
+);
+
 final isPopupOpen = StateProvider<bool>((ref) => false);

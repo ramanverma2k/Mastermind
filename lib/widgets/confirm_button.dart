@@ -30,7 +30,12 @@ class ConfirmButton extends ConsumerWidget {
             if (ref.read(boardState).isCorrect()) {
               log('Hurray, you won!');
             } else {
-              log('Wrong');
+              log('Wrong, try again!');
+              if (ref.read(currentRow.state).state < 6) {
+                ref.read(currentRow.state).state++;
+              } else {
+                log('You lost');
+              }
             }
           },
           child: const Text(

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mastermind/utils/board_state.dart';
 import 'package:mastermind/widgets/confirm_button.dart';
 
-class HintBoard extends StatelessWidget {
+class HintBoard extends ConsumerWidget {
   const HintBoard({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final row = ref.watch(currentRow);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         6,
-        (colNum) => 0 == colNum
+        (colNum) => row == colNum
             ? const ConfirmButton()
             : Row(
                 key: Key('row_$colNum'),
