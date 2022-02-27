@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mastermind/widgets/confirm_button.dart';
 
 class HintBoard extends StatelessWidget {
-  const HintBoard({Key? key, this.rowsDone = const []}) : super(key: key);
-
-  final List<int>? rowsDone;
+  const HintBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +10,7 @@ class HintBoard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         6,
-        (colNum) => rowsDone!.contains(colNum)
+        (colNum) => 0 == colNum
             ? const ConfirmButton()
             : Row(
                 key: Key('row_$colNum'),

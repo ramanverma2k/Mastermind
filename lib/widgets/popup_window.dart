@@ -40,6 +40,25 @@ class PopUpWindow extends ConsumerWidget {
                               .state
                               .tappedTile] = colorList[index];
 
+                          // Clear the previous guess list before adding new guess
+                          ref.read(boardState.state).state.guess.clear();
+
+                          // Then Push the selected colors into guess list.
+                          ref
+                              .read(boardState.state)
+                              .state
+                              .selectedCells
+                              .values
+                              .forEach(
+                            (color) {
+                              ref
+                                  .read(boardState.state)
+                                  .state
+                                  .guess
+                                  .add(color!);
+                            },
+                          );
+
                           // Hide popup window after filling the cell.
                           ref.read(isPopupOpen.state).state = false;
                         },

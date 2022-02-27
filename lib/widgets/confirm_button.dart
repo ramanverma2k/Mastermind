@@ -1,10 +1,16 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mastermind/utils/board_state.dart';
 
-class ConfirmButton extends StatelessWidget {
+// !!! this widget does not react to changes in the currentRow board state
+// Todo: Try to make it react to changes in the currentRow board state
+// ??? Try to pass the state from parent widget and use the isCorrect function from the board state here.
+class ConfirmButton extends ConsumerWidget {
   const ConfirmButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 23.0),
       child: SizedBox(
@@ -20,7 +26,13 @@ class ConfirmButton extends StatelessWidget {
             ),
             backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),
           ),
-          onPressed: () {},
+          onPressed: () {
+            if (ref.read(boardState).isCorrect()) {
+              log('Hurray, you won!');
+            } else {
+              log('Wrong');
+            }
+          },
           child: const Text(
             'Check',
             style: TextStyle(
