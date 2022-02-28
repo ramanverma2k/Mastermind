@@ -28,13 +28,12 @@ class ConfirmButton extends ConsumerWidget {
           ),
           onPressed: () {
             if (ref.read(boardState).isCorrect()) {
-              log('Hurray, you won!');
+              ref.read(isWon.state).state = true;
             } else {
-              log('Wrong, try again!');
-              if (ref.read(currentRow.state).state < 6) {
+              if (ref.read(currentRow.state).state < 5) {
                 ref.read(currentRow.state).state++;
               } else {
-                log('You lost');
+                ref.read(isLost.state).state = true;
               }
             }
           },

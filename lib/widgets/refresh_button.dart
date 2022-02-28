@@ -42,6 +42,9 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
 
                   // Reset the board state
                   ref.refresh(boardState);
+
+                  // Reset the currentRow state
+                  ref.refresh(currentRow);
                 },
               );
             },

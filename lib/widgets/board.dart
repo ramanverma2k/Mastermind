@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mastermind/widgets/gameover_popup.dart';
 import 'package:mastermind/widgets/popup_window.dart';
 import 'package:mastermind/widgets/guessing_board.dart';
 import 'package:mastermind/widgets/hint_board.dart';
+import 'package:mastermind/widgets/win_popup.dart';
 
 class Board extends StatelessWidget {
   const Board({Key? key}) : super(key: key);
@@ -28,6 +30,8 @@ class Board extends StatelessWidget {
           ),
         ),
         const PopUpWindow(),
+        const GameOverPopUp(),
+        const WinPopUp(),
       ],
     );
   }
