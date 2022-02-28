@@ -49,16 +49,29 @@ class PopUpWindow extends ConsumerWidget {
                                 .read(boardState.state)
                                 .state
                                 .selectedCells
-                                .values
-                                .forEach(
-                              (color) {
+                                .forEach((key, color) {
+                              if (ref
+                                  .read(boardState.state)
+                                  .state
+                                  .guess
+                                  .containsKey(int.parse(key[0]))) {
+                                // TODO:
+                                // If the color already exists in the list,
+                                // then only update the color for that cell in the list.
+                                //  currently updating the color for the cell pushes the color to the end of the list.
+                                ref.read(boardState.state).state.guess.update(
+                                      int.parse(key[0]),
+                                      (value) => [...value, color!],
+                                    );
+                              } else {
                                 ref
                                     .read(boardState.state)
                                     .state
                                     .guess
-                                    .add(color!);
-                              },
-                            );
+                                    .putIfAbsent(
+                                        int.parse(key[0]), () => [color!]);
+                              }
+                            });
 
                             // Hide popup window after filling the cell.
                             ref.read(isPopupOpen.state).state = false;

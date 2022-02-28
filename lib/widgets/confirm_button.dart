@@ -32,6 +32,7 @@ class ConfirmButton extends ConsumerWidget {
               if (ref.read(currentRow.state).state < 5) {
                 ref.read(currentRow.state).state++;
                 ref.refresh(boardState.state).state.guess;
+                ref.refresh(boardState.state).state.selectedCells;
               } else {
                 ref.read(isLost.state).state = true;
               }

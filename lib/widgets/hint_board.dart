@@ -31,17 +31,15 @@ class HintBoard extends ConsumerWidget {
                         key: Key('cell_$rowNum$index'),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          // TODO: This works but it's ugly and updates all the hint rows
-                          // ???: Is there a better way to do this? and keep the state for each row seperate?
-                          // ***: A map could be a better solution
-                          color: guess.isNotEmpty
-                              ? guess[index] == solution[index] &&
-                                      guess.contains(solution[index])
+                          color: guess[rowNum] != null
+                              ? guess[rowNum]![index] == solution[index] &&
+                                      solution.contains(guess[rowNum]![index])
                                   ? Colors.green
-                                  : guess[index] != solution[index] &&
-                                          guess.contains(solution[index])
-                                      ? Colors.grey
-                                      : Colors.white
+                                  : !solution.contains(guess[rowNum]![index])
+                                      ? Colors.white
+                                      : guess[rowNum]![index] != solution[index]
+                                          ? Colors.grey
+                                          : Colors.white
                               : Colors.white,
                           border: Border.all(
                             color: Colors.black,
