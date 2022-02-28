@@ -8,6 +8,10 @@ class HintBoard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final guess = ref.watch(boardState.state).state.guess;
+
+    final solution = ref.watch(boardState.state).state.solution;
+
     final row = ref.watch(currentRow);
 
     return Column(
@@ -27,7 +31,18 @@ class HintBoard extends ConsumerWidget {
                         key: Key('cell_$rowNum$index'),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white,
+                          // TODO: This works but it's ugly and updates all the hint rows
+                          // ???: Is there a better way to do this? and keep the state for each row seperate?
+                          // ***: A map could be a better solution
+                          color: guess.isNotEmpty
+                              ? guess[index] == solution[index] &&
+                                      guess.contains(solution[index])
+                                  ? Colors.green
+                                  : guess[index] != solution[index] &&
+                                          guess.contains(solution[index])
+                                      ? Colors.grey
+                                      : Colors.white
+                              : Colors.white,
                           border: Border.all(
                             color: Colors.black,
                             width: 3,

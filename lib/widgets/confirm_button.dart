@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mastermind/utils/board_state.dart';
@@ -32,6 +31,7 @@ class ConfirmButton extends ConsumerWidget {
             } else {
               if (ref.read(currentRow.state).state < 5) {
                 ref.read(currentRow.state).state++;
+                ref.refresh(boardState.state).state.guess;
               } else {
                 ref.read(isLost.state).state = true;
               }
