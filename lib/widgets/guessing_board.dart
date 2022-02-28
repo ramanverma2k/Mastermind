@@ -12,6 +12,8 @@ class GuessingBoard extends ConsumerWidget {
 
     final bool popUpState = ref.watch(isPopupOpen.state).state;
 
+    final int current = ref.watch(currentRow.state).state;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -23,39 +25,63 @@ class GuessingBoard extends ConsumerWidget {
               height: MediaQuery.of(context).size.height / 8,
               width: MediaQuery.of(context).size.width * 0.5,
               child: ListView.separated(
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    // Push the selected cell index to the board state
-                    ref.read(boardState.state).state.selectedCells.putIfAbsent(
-                          '$rowNum$index',
-                          () => null,
-                        );
+                itemBuilder: (context, index) => current == rowNum
+                    ? GestureDetector(
+                        onTap: () {
+                          // Push the selected cell index to the board state
+                          ref
+                              .read(boardState.state)
+                              .state
+                              .selectedCells
+                              .putIfAbsent(
+                                '$rowNum$index',
+                                () => null,
+                              );
 
-                    // Keep track of which cell is currently selected
-                    // We'll use this to highlight the selected cell with color choice
-                    ref.read(boardState.state).state.tappedTile =
-                        '$rowNum$index';
+                          // Keep track of which cell is currently selected
+                          // We'll use this to highlight the selected cell with color choice
+                          ref.read(boardState.state).state.tappedTile =
+                              '$rowNum$index';
 
-                    // Update the state of isPopUpOpen state to show or hide the popup.
-                    ref.read(isPopupOpen.state).state = !popUpState;
-                  },
-                  child: DecoratedBox(
-                    key: Key('cell_$rowNum$index'),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color:
-                          state.selectedCells['$rowNum$index'] ?? Colors.white,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 3,
+                          // Update the state of isPopUpOpen state to show or hide the popup.
+                          ref.read(isPopupOpen.state).state = !popUpState;
+                        },
+                        child: DecoratedBox(
+                          key: Key('cell_$rowNum$index'),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: state.selectedCells['$rowNum$index'] ??
+                                Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                          ),
+                          child: const SizedBox(
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                      )
+                    : DecoratedBox(
+                        key: Key('cell_$rowNum$index'),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: current == rowNum
+                              ? state.selectedCells['$rowNum$index'] ??
+                                  Colors.white
+                              : state.selectedCells['$rowNum$index'] ??
+                                  Colors.grey,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                        ),
+                        child: const SizedBox(
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
-                    ),
-                    child: const SizedBox(
-                      height: 40,
-                      width: 40,
-                    ),
-                  ),
-                ),
                 separatorBuilder: (context, index) => const SizedBox(
                   width: 20,
                 ),
