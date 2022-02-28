@@ -94,6 +94,7 @@ class WinPopUp extends ConsumerWidget {
                                   onPressed: () {
                                     ref.refresh(boardState);
                                     ref.refresh(isWon);
+                                    ref.refresh(currentRow);
                                   },
                                   child: const Text(
                                     'Reset',

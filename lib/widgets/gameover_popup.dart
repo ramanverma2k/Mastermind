@@ -89,6 +89,7 @@ class GameOverPopUp extends ConsumerWidget {
                                   onPressed: () {
                                     ref.refresh(boardState);
                                     ref.refresh(isLost);
+                                    ref.refresh(currentRow);
                                   },
                                   child: const Text(
                                     'Reset',
