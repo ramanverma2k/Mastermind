@@ -16,8 +16,8 @@ class GuessingBoard extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         6,
-        (colNum) => Row(
-          key: Key('row_$colNum'),
+        (rowNum) => Row(
+          key: Key('row_$rowNum'),
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height / 8,
@@ -27,24 +27,24 @@ class GuessingBoard extends ConsumerWidget {
                   onTap: () {
                     // Push the selected cell index to the board state
                     ref.read(boardState.state).state.selectedCells.putIfAbsent(
-                          '$colNum$index',
+                          '$rowNum$index',
                           () => null,
                         );
 
                     // Keep track of which cell is currently selected
                     // We'll use this to highlight the selected cell with color choice
                     ref.read(boardState.state).state.tappedTile =
-                        '$colNum$index';
+                        '$rowNum$index';
 
                     // Update the state of isPopUpOpen state to show or hide the popup.
                     ref.read(isPopupOpen.state).state = !popUpState;
                   },
                   child: DecoratedBox(
-                    key: Key('cell_$colNum$index'),
+                    key: Key('cell_$rowNum$index'),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color:
-                          state.selectedCells['$colNum$index'] ?? Colors.white,
+                          state.selectedCells['$rowNum$index'] ?? Colors.white,
                       border: Border.all(
                         color: Colors.black,
                         width: 3,

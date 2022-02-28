@@ -14,17 +14,17 @@ class HintBoard extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         6,
-        (colNum) => row == colNum
+        (rowNum) => row == rowNum
             ? const ConfirmButton()
             : Row(
-                key: Key('row_$colNum'),
+                key: Key('row_$rowNum'),
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 8,
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ListView.separated(
                       itemBuilder: (context, index) => DecoratedBox(
-                        key: Key('cell_$colNum$index'),
+                        key: Key('cell_$rowNum$index'),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white,
