@@ -20,101 +20,71 @@ class WinPopUp extends ConsumerWidget {
                 sigmaX: 10,
                 sigmaY: 10,
               ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    DecoratedBox(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Hurray! You Won!'),
-                            Lottie.asset('assets/lottie/celebration.json'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    children: const [
-                                      Text(
-                                        'Your Guess',
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    children: const [
-                                      Text(
-                                        'Correct Solution',
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Center(
-                                  child: SizedBox(
-                                height: 40,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(18.0),
-                                        side: const BorderSide(
-                                            color: Colors.black, width: 2),
-                                      ),
-                                    ),
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color?>(
-                                            Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    // Reset all states
-                                    ref.refresh(boardState);
-                                    ref.refresh(currentRow);
-                                    ref.refresh(isLost);
-                                    ref.refresh(isWon);
-                                    ref.refresh(isPopupOpen);
-                                  },
-                                  child: const Text(
-                                    'Reset',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                ),
+                child: Center(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'You Won!',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Flexible(
+                            child:
+                                Lottie.asset('assets/lottie/celebration.json'),
+                          ),
+                          Center(
+                              child: SizedBox(
+                            height: 40,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: ElevatedButton(
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: const BorderSide(
+                                        color: Colors.black, width: 2),
                                   ),
                                 ),
-                              ))
-                            ],
-                          ),
-                        ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color?>(
+                                        Colors.white),
+                              ),
+                              onPressed: () {
+                                // Reset all states
+                                ref.refresh(boardState);
+                                ref.refresh(currentRow);
+                                ref.refresh(isLost);
+                                ref.refresh(isWon);
+                                ref.refresh(isPopupOpen);
+                              },
+                              child: const Text(
+                                'Reset',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ))
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

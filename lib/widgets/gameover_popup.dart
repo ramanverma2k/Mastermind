@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mastermind/models/board_model.dart';
 import 'package:mastermind/utils/board_state.dart';
 
 class GameOverPopUp extends ConsumerWidget {
@@ -9,6 +10,8 @@ class GameOverPopUp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final BoardModel state = ref.watch(boardState);
+
     final isGameOver = ref.watch(isLost);
 
     return isGameOver
@@ -31,7 +34,14 @@ class GameOverPopUp extends ConsumerWidget {
                         height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: const Center(
-                          child: Text('Game Over'),
+                          child: Text(
+                            'Game Over',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -52,16 +62,95 @@ class GameOverPopUp extends ConsumerWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
-                                    children: const [
-                                      Text(
+                                    children: [
+                                      const Text(
                                         'Your Guess',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              4,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.315,
+                                          child: ListView.separated(
+                                            itemBuilder: (context, index) =>
+                                                DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: state
+                                                    .selectedCells['5$index'],
+                                                border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 3,
+                                                ),
+                                              ),
+                                              child: const SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                            ),
+                                            separatorBuilder:
+                                                (context, index) =>
+                                                    const SizedBox(width: 20),
+                                            itemCount: 4,
+                                            scrollDirection: Axis.horizontal,
+                                          ),
+                                        ),
                                       )
                                     ],
                                   ),
                                   Column(
-                                    children: const [
-                                      Text(
+                                    children: [
+                                      const Text(
                                         'Correct Solution',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Center(
+                                        child: SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              4,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.315,
+                                          child: ListView.separated(
+                                            itemBuilder: (context, index) =>
+                                                DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: state.solution[index],
+                                                border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 3,
+                                                ),
+                                              ),
+                                              child: const SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                            ),
+                                            separatorBuilder:
+                                                (context, index) =>
+                                                    const SizedBox(width: 20),
+                                            itemCount: 4,
+                                            scrollDirection: Axis.horizontal,
+                                          ),
+                                        ),
                                       )
                                     ],
                                   ),
