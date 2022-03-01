@@ -40,11 +40,12 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
                   // Reset the animation state
                   _controller.reset();
 
-                  // Reset the board state
+                  // Reset all states
                   ref.refresh(boardState);
-
-                  // Reset the currentRow state
                   ref.refresh(currentRow);
+                  ref.refresh(isLost);
+                  ref.refresh(isWon);
+                  ref.refresh(isPopupOpen);
                 },
               );
             },
