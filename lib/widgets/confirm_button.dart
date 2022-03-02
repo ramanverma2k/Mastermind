@@ -10,11 +10,25 @@ class ConfirmButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 23.0),
+      padding: EdgeInsets.symmetric(
+          vertical: width < 390 && height < 812
+              ? 17.0
+              : height > 768
+                  ? 43
+                  : 15.0),
       child: SizedBox(
         height: 40,
-        width: MediaQuery.of(context).size.width * 0.3,
+        width: width < 390
+            ? width * 0.41
+            : width > 768
+                ? width > 1080
+                    ? width * 0.1
+                    : width * 0.18
+                : width * 0.4,
         child: ElevatedButton(
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(

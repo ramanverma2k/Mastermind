@@ -1,10 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mastermind/models/board_model.dart';
 import 'package:mastermind/utils/board_state.dart';
 
 class GuessingBoard extends ConsumerWidget {
-  const GuessingBoard({Key? key}) : super(key: key);
+  const GuessingBoard({Key? key, required this.height, required this.width})
+      : super(key: key);
+
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,11 +24,12 @@ class GuessingBoard extends ConsumerWidget {
       children: List.generate(
         6,
         (rowNum) => Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
           key: Key('row_$rowNum'),
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height / 8,
-              width: MediaQuery.of(context).size.width * 0.5,
+              height: height / 8,
               child: ListView.separated(
                 itemBuilder: (context, index) => current == rowNum
                     ? GestureDetector(
@@ -82,11 +88,12 @@ class GuessingBoard extends ConsumerWidget {
                           width: 40,
                         ),
                       ),
-                separatorBuilder: (context, index) => const SizedBox(
-                  width: 20,
+                separatorBuilder: (context, index) => SizedBox(
+                  width: width < 768 ? 10 : 20,
                 ),
                 itemCount: 4,
                 scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
               ),
             ),
           ],

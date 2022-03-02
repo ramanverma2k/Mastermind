@@ -29,7 +29,36 @@ class HomePage extends StatelessWidget {
         ],
         centerTitle: true,
       ),
-      body: const Board(),
+      body: LayoutBuilder(builder: (context, constraints) {
+        final double height = constraints.maxHeight;
+        final double width = constraints.maxWidth;
+
+        if (width < 390) {
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Board(
+              height: height,
+              width: width,
+            ),
+          );
+        } else if (width < 428) {
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Board(
+              height: height,
+              width: width,
+            ),
+          );
+        } else {
+          return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Board(
+              height: height,
+              width: width,
+            ),
+          );
+        }
+      }),
     );
   }
 }
