@@ -46,6 +46,10 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
                   ref.refresh(isLost);
                   ref.refresh(isWon);
                   ref.refresh(isPopupOpen);
+
+                  // Generate new Color List and Solution
+                  ref.read(boardState).genColorList();
+                  ref.read(boardState).genSolutionFromColorList();
                 },
               );
             },

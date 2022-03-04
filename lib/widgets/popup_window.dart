@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mastermind/utils/board_state.dart';
-import 'package:mastermind/utils/constants.dart';
 
 class PopUpWindow extends ConsumerWidget {
   const PopUpWindow({Key? key}) : super(key: key);
@@ -22,24 +21,28 @@ class PopUpWindow extends ConsumerWidget {
               ),
               child: Center(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.32,
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
+                        crossAxisCount: 3,
                         mainAxisSpacing: 20,
                         crossAxisSpacing: 20,
                       ),
-                      itemCount: 12,
+                      itemCount: 9,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
                             // Fill the cell with selected color
                             ref.read(boardState.state).state.selectedCells[ref
-                                .watch(boardState.state)
-                                .state
-                                .tappedTile] = colorList[index];
+                                    .watch(boardState.state)
+                                    .state
+                                    .tappedTile] =
+                                ref
+                                    .read(boardState.state)
+                                    .state
+                                    .colorList[index];
 
                             // Clear the previous guess list before adding new guess
                             ref.read(boardState.state).state.guess.clear();
@@ -75,7 +78,10 @@ class PopUpWindow extends ConsumerWidget {
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: colorList[index],
+                              color: ref
+                                  .read(boardState.state)
+                                  .state
+                                  .colorList[index],
                             ),
                           ),
                         );

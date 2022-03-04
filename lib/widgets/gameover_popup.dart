@@ -182,6 +182,12 @@ class GameOverPopUp extends ConsumerWidget {
                                     ref.refresh(isLost);
                                     ref.refresh(isWon);
                                     ref.refresh(isPopupOpen);
+
+                                    // Generate new ColorList and Solution
+                                    ref.read(boardState).genColorList();
+                                    ref
+                                        .read(boardState)
+                                        .genSolutionFromColorList();
                                   },
                                   child: const Text(
                                     'Reset',

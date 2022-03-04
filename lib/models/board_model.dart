@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,12 +10,9 @@ class BoardModel {
 
   final Map<int, List<Color>> guess = {};
 
-  final List<Color> solution = const [
-    Color(0xFFe91e63),
-    Color(0xFF9c27b0),
-    Color(0xFF2196f3),
-    Color(0xFF4caf50),
-  ];
+  final solution = <Color>[];
+
+  final colorList = <Color>[];
 
   String tappedTile = '';
 
@@ -21,5 +20,33 @@ class BoardModel {
     const deq = DeepCollectionEquality();
 
     return deq.equals(guess.values.last, solution);
+  }
+
+  // Generate random hex colors
+  void genColorList() {
+    final random = Random();
+    for (var i = 0; i < 9; i++) {
+      final color = Color.fromARGB(
+          255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
+
+      if (!colorList.contains(color)) {
+        colorList.add(color);
+      }
+    }
+  }
+
+  void genSolutionFromColorList() {
+    final random = Random();
+
+    for (;;) {
+      final color = colorList[random.nextInt(9)];
+      if (solution.length < 4) {
+        if (!solution.contains(color)) {
+          solution.add(color);
+        }
+      } else {
+        break;
+      }
+    }
   }
 }

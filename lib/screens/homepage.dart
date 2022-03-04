@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mastermind/utils/board_state.dart';
 import 'package:mastermind/widgets/board.dart';
 import 'package:mastermind/widgets/refresh_button.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
+
+  @override
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Generate ColorList and a Solution on startup
+    ref.read(boardState).genColorList();
+    ref.read(boardState).genSolutionFromColorList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          title,
+          widget.title,
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
