@@ -18,6 +18,8 @@ class HintBoard extends ConsumerWidget {
 
     final row = ref.watch(currentRow);
 
+    final darkTheme = ref.watch(isDarkTheme);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +50,8 @@ class HintBoard extends ConsumerWidget {
                                             : Colors.white
                                 : Colors.white,
                             border: Border.all(
-                              color: Colors.black,
+                              color:
+                                  darkTheme ? Colors.transparent : Colors.black,
                               width: 3,
                             ),
                           ),

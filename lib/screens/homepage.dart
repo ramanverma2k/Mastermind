@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mastermind/utils/board_state.dart';
 import 'package:mastermind/widgets/board.dart';
 import 'package:mastermind/widgets/refresh_button.dart';
+import 'package:mastermind/widgets/toggle_theme.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -25,22 +26,24 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final darkTheme = ref.watch(isDarkTheme);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: Text(
           widget.title,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: darkTheme ? Colors.white : Colors.black,
           ),
         ),
         actions: const [
+          SizedBox(width: 10),
           RefreshButton(),
-          SizedBox(width: 20),
+          SizedBox(width: 10),
+          ToggleThemeButton(),
+          SizedBox(width: 10),
           Icon(
             Icons.help_rounded,
-            color: Colors.black,
           ),
           SizedBox(width: 20),
         ],

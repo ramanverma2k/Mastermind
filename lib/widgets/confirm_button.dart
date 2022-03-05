@@ -13,6 +13,8 @@ class ConfirmButton extends ConsumerWidget {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
+    final darkTheme = ref.watch(isDarkTheme);
+
     return Padding(
       padding: EdgeInsets.symmetric(
           vertical: width < 390 && height < 812
@@ -34,7 +36,10 @@ class ConfirmButton extends ConsumerWidget {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
-                side: const BorderSide(color: Colors.black, width: 2),
+                side: BorderSide(
+                  color: darkTheme ? Colors.transparent : Colors.black,
+                  width: 2,
+                ),
               ),
             ),
             backgroundColor: MaterialStateProperty.all<Color?>(Colors.white),

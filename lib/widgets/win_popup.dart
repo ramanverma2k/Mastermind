@@ -12,6 +12,8 @@ class WinPopUp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isGameOver = ref.watch(isWon);
 
+    final darkTheme = ref.watch(isDarkTheme);
+
     return isGameOver
         ? Scaffold(
             backgroundColor: Colors.transparent,
@@ -55,8 +57,12 @@ class WinPopUp extends ConsumerWidget {
                                     RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: const BorderSide(
-                                        color: Colors.black, width: 2),
+                                    side: BorderSide(
+                                      color: darkTheme
+                                          ? Colors.transparent
+                                          : Colors.black,
+                                      width: 2,
+                                    ),
                                   ),
                                 ),
                                 backgroundColor:

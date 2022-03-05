@@ -14,6 +14,8 @@ class GameOverPopUp extends ConsumerWidget {
 
     final isGameOver = ref.watch(isLost);
 
+    final darkTheme = ref.watch(isDarkTheme);
+
     return isGameOver
         ? Scaffold(
             backgroundColor: Colors.transparent,
@@ -167,8 +169,12 @@ class GameOverPopUp extends ConsumerWidget {
                                       RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(18.0),
-                                        side: const BorderSide(
-                                            color: Colors.black, width: 2),
+                                        side: BorderSide(
+                                          color: darkTheme
+                                              ? Colors.transparent
+                                              : Colors.black,
+                                          width: 2,
+                                        ),
                                       ),
                                     ),
                                     backgroundColor:

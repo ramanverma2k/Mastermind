@@ -18,6 +18,8 @@ class GuessingBoard extends ConsumerWidget {
 
     final int current = ref.watch(currentRow.state).state;
 
+    final darkTheme = ref.watch(isDarkTheme);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -58,7 +60,8 @@ class GuessingBoard extends ConsumerWidget {
                             color: state.selectedCells['$rowNum$index'] ??
                                 Colors.white,
                             border: Border.all(
-                              color: Colors.black,
+                              color:
+                                  darkTheme ? Colors.transparent : Colors.black,
                               width: 3,
                             ),
                           ),
@@ -78,7 +81,8 @@ class GuessingBoard extends ConsumerWidget {
                               : state.selectedCells['$rowNum$index'] ??
                                   Colors.grey,
                           border: Border.all(
-                            color: Colors.black,
+                            color:
+                                darkTheme ? Colors.transparent : Colors.black,
                             width: 3,
                           ),
                         ),

@@ -14,3 +14,5 @@ final isPopupOpen = StateProvider<bool>((ref) => false);
 final isLost = StateProvider<bool>((ref) => false);
 
 final isWon = StateProvider<bool>((ref) => false);
+
+final isDarkTheme = StateProvider<bool>((ref) => true);
