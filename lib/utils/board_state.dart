@@ -15,4 +15,4 @@ final isLost = StateProvider<bool>((ref) => false);
 
 final isWon = StateProvider<bool>((ref) => false);
 
-final isDarkTheme = StateProvider<bool>((ref) => true);
+final isDarkTheme = StateProvider<bool>((ref) => false);
