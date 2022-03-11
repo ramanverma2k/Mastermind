@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mastermind/utils/board_state.dart';
 import 'package:mastermind/widgets/board.dart';
+import 'package:mastermind/widgets/help_button.dart';
 import 'package:mastermind/widgets/refresh_button.dart';
 import 'package:mastermind/widgets/toggle_theme.dart';
 
@@ -42,9 +43,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           SizedBox(width: 10),
           ToggleThemeButton(),
           SizedBox(width: 10),
-          Icon(
-            Icons.help_rounded,
-          ),
+          HelpButton(),
           SizedBox(width: 20),
         ],
         centerTitle: true,

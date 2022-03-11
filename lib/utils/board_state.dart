@@ -16,3 +16,5 @@ final isLost = StateProvider<bool>((ref) => false);
 final isWon = StateProvider<bool>((ref) => false);
 
 final isDarkTheme = StateProvider<bool>((ref) => false);
+
+final isHelpOpen = StateProvider<bool>((ref) => false);
