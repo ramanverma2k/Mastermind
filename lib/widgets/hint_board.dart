@@ -26,8 +26,12 @@ class HintBoard extends ConsumerWidget {
       children: List.generate(
         6,
         (rowNum) => row == rowNum
-            ? const ConfirmButton()
+            ? Container(
+                color: Colors.blue,
+                child: const ConfirmButton(),
+              )
             : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 key: Key('row_$rowNum'),
                 children: [
                   Center(

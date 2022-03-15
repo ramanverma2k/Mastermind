@@ -20,7 +20,7 @@ class ConfirmButton extends ConsumerWidget {
           vertical: width < 390 && height < 812
               ? 17.0
               : height > 768
-                  ? 43
+                  ? 25
                   : 15.0),
       child: SizedBox(
         height: 40,

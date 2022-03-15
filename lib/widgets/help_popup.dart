@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mastermind/utils/board_state.dart';
 
-// TODO: Style and correct the layout of this popup
 class HelpPopup extends ConsumerWidget {
   const HelpPopup({Key? key}) : super(key: key);
 
