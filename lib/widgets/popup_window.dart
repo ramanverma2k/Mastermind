@@ -29,7 +29,7 @@ class PopUpWindow extends ConsumerWidget {
                       : width > 428
                           ? width * 0.25
                           : width > 390
-                              ? width * 0.3
+                              ? width * 0.6
                               : width * 0.5,
                   child: GridView.builder(
                     gridDelegate:

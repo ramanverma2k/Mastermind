@@ -34,7 +34,7 @@ class GameOverPopUp extends ConsumerWidget {
                       ),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.width * 0.8,
+                        width: MediaQuery.of(context).size.width * 0.9,
                         child: const Center(
                           child: Text(
                             'Game Over',
@@ -53,7 +53,7 @@ class GameOverPopUp extends ConsumerWidget {
                       ),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.4,
-                        width: MediaQuery.of(context).size.width * 0.8,
+                        width: MediaQuery.of(context).size.width * 0.9,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Column(
@@ -82,7 +82,7 @@ class GameOverPopUp extends ConsumerWidget {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.315,
+                                              0.35,
                                           child: ListView.separated(
                                             itemBuilder: (context, index) =>
                                                 DecoratedBox(
@@ -102,7 +102,7 @@ class GameOverPopUp extends ConsumerWidget {
                                             ),
                                             separatorBuilder:
                                                 (context, index) =>
-                                                    const SizedBox(width: 20),
+                                                    const SizedBox(width: 15),
                                             itemCount: 4,
                                             scrollDirection: Axis.horizontal,
                                           ),
@@ -129,7 +129,7 @@ class GameOverPopUp extends ConsumerWidget {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.315,
+                                              0.35,
                                           child: ListView.separated(
                                             itemBuilder: (context, index) =>
                                                 DecoratedBox(
