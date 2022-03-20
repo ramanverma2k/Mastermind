@@ -1,4 +1,4 @@
-package com.r2k.mastermind
+package com.cloverspace.mastermind
 
 import io.flutter.embedding.android.FlutterActivity
 
