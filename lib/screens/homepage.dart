@@ -53,28 +53,19 @@ class _HomePageState extends ConsumerState<HomePage> {
         final double width = constraints.maxWidth;
 
         if (width < 390) {
-          return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Board(
-              height: height,
-              width: width,
-            ),
+          return Board(
+            height: height,
+            width: width,
           );
         } else if (width < 428) {
-          return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Board(
-              height: height,
-              width: width,
-            ),
+          return Board(
+            height: height,
+            width: width,
           );
         } else {
-          return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Board(
-              height: height,
-              width: width,
-            ),
+          return Board(
+            height: height,
+            width: width,
           );
         }
       }),

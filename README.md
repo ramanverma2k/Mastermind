@@ -2,8 +2,6 @@
 
 Flutter implementation of https://master-mind.surge.sh/.
 
-[![codecov](https://codecov.io/gh/ramanverma2k/Lanai/branch/main/graph/badge.svg?token=DLKG418V9C)](https://codecov.io/gh/ramanverma2k/Lanai) [![main](https://github.com/ramanverma2k/Lanai/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/ramanverma2k/Lanai/actions/workflows/main.yml)
-
 ## Screenshots
 
 <p align="center">
